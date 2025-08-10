@@ -706,7 +706,7 @@ git cherry-pick --abort
 ---
 ---
 ## 🔴 Advanced Level Questions (21-30)
-###Q21: What is Git interactive rebase (`git rebase -i`) and when do you use it?
+### Q21: What is Git interactive rebase (`git rebase -i`) and when do you use it?
 #### Answer:
 Interactive rebase allows you to modify commit history by editing, reordering, squashing, or dropping commits.
 #### 🎛️ Available Commands:
