@@ -4,13 +4,10 @@ A comprehensive collection of 30 Git interview questions with detailed answers, 
 
 📚 Table of Contents
 
-🟢 Beginner Level (1-10)
-🟡 Intermediate Level (11-20)
-🔴 Advanced Level (21-30)
-📋 Quick Command Reference
-🎯 Interview Tips
-🤝 Contributing
-📄 License
+##### 🟢 Beginner Level (1-10)
+#####🟡 Intermediate Level (11-20)
+#####🔴 Advanced Level (21-30)
+#####📋 Quick Command Reference
 
 
 ## 🟢 Beginner Level Questions 
