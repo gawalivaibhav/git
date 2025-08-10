@@ -4,16 +4,19 @@ A comprehensive collection of 30 Git interview questions with detailed answers, 
 
 📚 Table of Contents
 
-##### 🟢 Beginner Level (1-10)
-#####🟡 Intermediate Level (11-20)
-#####🔴 Advanced Level (21-30)
-#####📋 Quick Command Reference
+🟢 Beginner Level (1-10)
+🟡 Intermediate Level (11-20)
+🔴 Advanced Level (21-30)
+📋 Quick Command Reference
+🎯 Interview Tips
+🤝 Contributing
+📄 License
 
 
 ## 🟢 Beginner Level Questions 
 
 ### GitHub interaction (remote platform)
-```
+```bash
 git remote add origin https://github.com/username/repo.git
 git push -u origin main
 ```
@@ -46,7 +49,7 @@ git checkout branch-name
 git switch branch-name       # Modern alternative
 ```
 ---
-### Q4: What is the purpose of git init?
+### Q4: What is the purpose of `git init`?
 Answer:
 
 `git init` initializes a new Git repository in the current directory by creating the .git folder containing all repository metadata.
@@ -83,18 +86,18 @@ graph LR
     C -->|git push| D[Remote Repository]
 
 ```
-#### 🔧 git add - Stages changes to the staging area
-```
+#### 🔧 `git add` - Stages changes to the staging area
+```bash
 git add index.html           # Stage specific file
 git add .                    # Stage all changes
 git add *.js                 # Stage all JavaScript files
 ```
-#### 💾 git commit - Records staged changes to local repository
+#### 💾 `git commit` - Records staged changes to local repository
 ```bash
 git commit -m "Fix navigation bug"
 git commit -am "Quick fix"   # Stage and commit tracked files
 ```
-#### ⬆️ git push - Uploads local commits to remote repository
+#### ⬆️ `git push` - Uploads local commits to remote repository
 
 ```bash
 git push origin main         # Push to main branch
@@ -102,9 +105,9 @@ git push -u origin feature   # Push and set upstream
 ```
 ---
 
-### Q6: What does git status show?
+### Q6: What does `git status` show?
 Answer:
-git status displays the current state of the working directory and staging area.
+`git status` displays the current state of the working directory and staging area.
 Example Output:
 ```bash
 git status
@@ -224,7 +227,7 @@ git add index.html
 git commit -m "Resolve merge conflict in header"
 ```
 ---
-### Q10: Explain git clone vs git pull.
+### Q10: Explain `git clone` vs `git pull`.
 Answer:
 |Command|Purpose|Usage|
 |:---:|:---:|:---:|
@@ -251,9 +254,13 @@ git merge origin/main  # Merge changes
 
 ## 🟡 Intermediate Level Questions (11-20)
 
-### Q11: What is the difference between git fetch and git pull?
+### Q11: What is the difference between `git fetch` and `git pull`?
 Answer:
-CommandWhat it doesSafetyUse casegit fetch📥 Downloads changes only✅ SafeReview before merginggit pull📥➕ Downloads + merges⚠️ Can cause conflictsQuick updates
+|Command|What it does|Safety|Use case|
+|:---:|:---:|:---:|:---:|
+|`git fetch`|📥 Downloads changes only|✅ Safe|Review before merging|
+|`git pull`|📥➕ Downloads + merges⚠️ |Can cause conflicts|Quick updates|
+
 Examples:
 ```bash
 # 🔍 git fetch - Safe exploration
@@ -272,16 +279,16 @@ git pull --rebase origin main
 ### Q12: How does ``git rebase`` differ from ``git merge``?
 Answer:
 Visual Comparison:
-```
+```text
 Before:
     A---B---C feature
    /
   D---E---F---G main
 
-After MERGE:          After REBASE:
-    A---B---C feature     D---E---F---G---A'---B'---C' feature
-   /         \           /
-  D---E---F---G---H main D---E---F---G main
+After MERGE:                   After REBASE:
+    A---B---C feature         D---E---F---G---A'---B'---C' feature
+   /         \               /
+  D---E---F---G---H main    D---E---F---G main
 ```
 
 | Aspect | Merge | Rebase |
@@ -291,7 +298,7 @@ After MERGE:          After REBASE:
 |Safety| ✅ Non-destructive| ⚠️ Rewrites history|
 
 Examples:
-```
+```bash
 # 🌿 Merge approach
 git checkout main
 git merge feature-branch
@@ -310,9 +317,9 @@ git rebase -i HEAD~3  # Edit last 3 commits
 ---
 ### Q13: What is the use of .gitignore?
 Answer:
-.gitignore specifies intentionally untracked files that Git should ignore.
+`.gitignore` specifies intentionally untracked files that Git should ignore.
 
-📁 Example .gitignore:
+📁 Example `.gitignore`:
 ```# Create .gitignore
 touch .gitignore
 gitignore# 📝 Logs and databases
@@ -374,7 +381,7 @@ graph LR
 ```
 Example:
 
-```
+```bash
 # 📜 View commit history
 git log --oneline
 # abc1234 (HEAD -> main) Latest commit
@@ -407,7 +414,7 @@ git checkout main
 Answer:
 ``git revert`` creates a new commit that undoes changes from a previous commit. It's safe for shared repositories.
 
-```
+```bash
 # 📜 Find commits to revert
 git log --oneline
 # abc1234 (HEAD -> main) Bug introduced here
@@ -442,7 +449,7 @@ CommandUse caseSafetygit revert🌐 Shared repositories✅ Safegit reset💻 Loc
 Answer:
 Squashing combines multiple commits into a single commit for cleaner history.
 #### Method 1: Interactive Rebase
-```
+```bash
 # 🎛️ Squash last 3 commits
 git rebase -i HEAD~3
 
@@ -465,7 +472,8 @@ Feature: Complete login system
 ```
 
 #### Method 2: Soft Reset
-```# 🔄 Reset to 3 commits ago (keep changes)
+```bash
+# 🔄 Reset to 3 commits ago (keep changes)
 git reset --soft HEAD~3
 
 # 💾 Create new single commit
@@ -473,7 +481,7 @@ git commit -m "Feature: Complete login system with validation"
 ```
 
 #### Method 3: Squash Merge
-```
+```bash
 # 🌿 Squash entire feature branch
 git checkout main
 git merge --squash feature-branch
@@ -481,12 +489,12 @@ git commit -m "Add complete login feature"
 ```
 ---
 
-### Q17: Explain git stash and how to use it.
+### Q17: Explain `git stash` and how to use it.
 Answer:
 ``git stash`` temporarily saves uncommitted changes so you can work on something else.
 
 💾 Basic Stashing:
-```
+```bash
 # 📦 Stash current changes
 git stash
 # or with descriptive message
@@ -508,7 +516,7 @@ git stash apply stash@{1}
 ```
 
 🎛️ Advanced Stashing:
-```
+```bash
 # 📁 Stash specific files
 git stash push -m "Stash config files" config.json settings.yaml
 
@@ -536,13 +544,13 @@ Use Cases:
 #### Answer:
 |Command| Scope|Safety|Use Case|
 |:---:|:---:|:---:|:---:|
-|git reset| Moves HEAD & branch|⚠️ Can be destructive|Undo local commits|
-|git checkout| Moves HEAD only| ✅ Safe| Switch branches/restore files|
-|git revert|Creates new commit|✅ Safe for shared repos|Undo public commits|
+|`git reset`| Moves HEAD & branch|⚠️ Can be destructive|Undo local commits|
+|`git checkout`| Moves HEAD only| ✅ Safe| Switch branches/restore files|
+|`git revert`|Creates new commit|✅ Safe for shared repos|Undo public commits|
 
-#### 🎛️ git reset modes:
+#### 🎛️ `git reset` modes:
 ```bash
-# 🽃 Soft reset (keep changes staged)
+# 🎛️Soft reset (keep changes staged)
 git reset --soft HEAD~1
 
 # 📝 Mixed reset (keep changes unstaged) - DEFAULT
@@ -552,7 +560,7 @@ git reset --mixed HEAD~1
 # 💥 Hard reset (discard all changes) - DANGEROUS!
 git reset --hard HEAD~1
 ```
-#### 🔄 git checkout uses:
+#### 🔄 `git checkout` uses:
 ```bash
 # 🌿 Switch branches
 git checkout main
@@ -568,7 +576,7 @@ git checkout HEAD -- file.txt
 # 📄 Restore file from specific commit  
 git checkout abc1234 -- file.txt
 ```
-#### ↩️ git revert examples:
+#### ↩️ `git revert` examples:
 ```bash
 # ✅ Safe for shared repositories
 git revert HEAD           # Revert last commit
@@ -698,7 +706,7 @@ git cherry-pick --abort
 ---
 ---
 ## 🔴 Advanced Level Questions (21-30)
-###Q21: What is Git interactive rebase (git rebase -i) and when do you use it?
+###Q21: What is Git interactive rebase (`git rebase -i`) and when do you use it?
 #### Answer:
 Interactive rebase allows you to modify commit history by editing, reordering, squashing, or dropping commits.
 #### 🎛️ Available Commands:
@@ -908,7 +916,7 @@ git add large-file.url
 ### Q24: How do you undo a pushed commit?
 #### Answer:
 Different approaches depending on collaboration and safety requirements:
-#### ✅ Safe Method: git revert (Recommended)
+#### ✅ Safe Method: `git revert` (Recommended)
 ```bash
 # 📜 Find problematic commit
 git log --oneline
@@ -925,7 +933,7 @@ git revert HEAD~2..HEAD  # Revert last 2 commits
 git push origin main
 ```
 
-#### ⚠️ Destructive Method: git reset + Force Push
+#### ⚠️ Destructive Method: `git reset` + Force Push
 ```bash
 # 🚨 DANGER: Only use if you're sure no one else pulled the commit
 
@@ -1451,7 +1459,7 @@ echo "✅ Cleanup complete!"
 
 ### Q29: Explain the concept of Git reflog.
 #### Answer:
-Git reflog is a mechanism that records when the tips of branches and other references were updated in the local repository.
+`Git reflog` is a mechanism that records when the tips of branches and other references were updated in the local repository.
 #### 🔍 What Reflog Tracks:
 - Every time HEAD moves
 - Branch creation/deletion
